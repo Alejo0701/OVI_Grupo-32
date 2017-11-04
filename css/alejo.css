@@ -46,6 +46,12 @@
   box-shadow: 10px 10px 5px grey;
 }
 
+.parrafo{
+  margin: 0px 15px 10px !important;
+  font-size: 25px;
+  text-align: left;
+  //font: arial;
+}
 .marco_actividades{
   font-size: 25px;
   border:10px solid #005883;
@@ -198,8 +204,12 @@
 }
 
 .fotos{
-  width: 70px;
-  height: 80px;
+  border:5px solid #005883; 
+  border-radius:35px 0px 35px 0px;
+  padding:5px; 
+  background:#F0B429;
+  width: 140px;
+  height: 170.72px;
 }
 
 .modal-dialog{
@@ -263,7 +273,7 @@
     padding: 20px 0px 20px 20px;
     border-radius: 5px;
     border-top-left-radius: 0px;
-    border: 2px solid bisque;
+    border: 2px solid white;
     width: 100%;
     text-align: center;
     font-size: 3ex;
@@ -281,4 +291,38 @@
 .item{
   margin: auto;
   width: 80%;
+}
+
+.modal-dialog{
+  width: 645px;
+}
+
+.text-autor{
+  padding-top:34px; 
+  text-align:left; 
+  font-size:150%
+}
+
+.modal-content{
+  border:10px solid #005883;
+    border-radius: 35px 0px 35px 0px
+}
+
+.modal-header{
+  background-color:#F0B429;
+  border-radius: 25px 0px 0px 0px;
+  border-bottom: 1px solid black;
+}
+
+.modal-footer{
+   background-color:#F0B429;
+   border-radius: 0px 0px 25px 0px
+}
+
+.centerTable{
+   text-align: -webkit-center;
+}
+
+#tabla_header td{
+  width: 250px;
 }
