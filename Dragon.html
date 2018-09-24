@@ -1,0 +1,536 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Dragon and TV</title>
+		<style>
+            section {
+                border: 1px solid #9C9898;
+				position: relative;
+				hight: 400px;
+				width: 800px;
+			}
+						
+			video {
+				background-color: #000;
+				position: absolute;
+				left: 70%;
+				top:25%;
+				transform:skew(0deg, 25deg);
+				border: 10px solid black;
+			}
+			
+			#buttonPlay{
+				position: absolute;
+				left: 41.5%;
+				top: 42%;
+				padding: 0;
+				margin: 0;
+			}
+			
+			#buttonPause{
+				position: absolute;
+				left: 40%;
+				top: 42%;
+				padding: 0;
+				margin: 0;
+			}
+			
+			#myCanvas2{
+				display: none;
+			};
+		</style>
+	</head>
+	<body   onload = "init();">
+        <section>
+			<canvas id="myCanvas" width="600" height="400">
+				Sorry! Unfortunately your browser does not support the canvas tag, - update your browser.
+			</canvas>
+			<video width="160" height="131" loop="true" preload="auto" autoplay >
+				<source src="https://drive.google.com/uc?export=download&confirm=no_antivirus&id=0B9A6l-N3GcS_SjlRUXRJUDF3YzA" type="video/mp4" />
+				<source src="https://drive.google.com/uc?export=download&confirm=no_antivirus&id=0B9A6l-N3GcS_VTRJV0RzOE05ak" type="video/webm" />
+				<source src="https://drive.google.com/uc?export=download&confirm=no_antivirus&id=0B9A6l-N3GcS_Uk8yemFocl9CbjQ" type="video/ogg" />
+				Sorry! Unfortunately your browser does not support the video tag, - update your browser.
+			</video>
+			
+			<input id="buttonPlay" tabindex = "0" type="button" value=">" onclick = "PlayVideo();">
+			<input id="buttonPause" tabindex = "1" type="button" value="II" onclick = "PauseVideo();">
+		</section>
+		<canvas id="myCanvas2" width="600" height="400">
+				Your browser does not support the canvas tag.
+		</canvas>
+		<script>
+			var canvas, ctx;
+			var imagesToLoad = {
+				dragonBack: 'https://drive.google.com/uc?export=download&confirm=no_antivirus&id=0B9A6l-N3GcS_ZHk2OWRaUWgzeEU',
+				dragonAbdomen: 'https://drive.google.com/uc?export=download&confirm=no_antivirus&id=0B9A6l-N3GcS_b00tMmdwRVpvOXM',
+				dragonFeet: 'https://drive.google.com/uc?export=download&confirm=no_antivirus&id=0B9A6l-N3GcS_R1hwdU8xVmFRV0k',
+			};
+				  
+			function loadImages(imagesToBeLoaded, drawCallback) {
+				var imagesLoaded = {};
+				var loadedImages = 0;
+				var numberOfImagesToLoad = 0;
+
+				// get num of sources
+				for(var name in imagesToBeLoaded) {
+					numberOfImagesToLoad++;
+				}
+
+				for(var name in imagesToBeLoaded) {
+					imagesLoaded[name] = new Image();
+					imagesLoaded[name].onload = function() {
+						if(++loadedImages >= numberOfImagesToLoad) {
+						drawCallback(imagesLoaded);
+						}
+					};
+					imagesLoaded[name].src = imagesToBeLoaded[name];
+				}
+			}
+				
+			function init() {
+				video = document.querySelector('Video');
+				setInterval("processFrame()", 25);
+				
+				canvas = document.getElementById('myCanvas');
+				ctx = canvas.getContext('2d');
+				
+				loadImages(imagesToLoad, function(imagesLoaded) {
+					patternDragonBack = ctx.createPattern(imagesLoaded.dragonBack, 'repeat');
+					patternDragonAbdomen = ctx.createPattern(imagesLoaded.dragonAbdomen, 'repeat');
+					patternDragonFeet = ctx.createPattern(imagesLoaded.dragonFeet, 'repeat');
+					drawDragonUsingPatterns();
+				});
+			};
+			
+			function drawDragonUsingPatterns(){
+				
+				ctx.fillStyle = patternDragonAbdomen;
+				drawAbdomen();
+				ctx.fillStyle = patternDragonFeet;
+				drawFeet();
+				ctx.fillStyle = patternDragonBack;
+				addShadows();
+				drawWing();
+				drawEars();
+				drawBack();
+				drawNostrils();
+				drawEyes();
+				drawRemoteControl();
+				drawHands();
+				}
+			
+			function drawBack(){
+				
+				// defining style
+				ctx.lineCap= "round";
+				ctx.lineJoin="round";
+				ctx.lineWidth = 3;
+				ctx.strokeStyle="#147738";
+				
+				ctx.save();
+				// back path
+				ctx.beginPath();
+				ctx.moveTo(295, 68);
+				ctx.bezierCurveTo(330,250,280,250,235,305);
+				ctx.bezierCurveTo(285,360,320,340,353,328);
+				ctx.bezierCurveTo(350, 360, 345, 350,335,360);
+				ctx.lineTo(335,373);
+				ctx.lineTo(345,373);
+				ctx.bezierCurveTo(330, 380, 330, 380,325,390);
+				ctx.lineTo(315,390);
+				ctx.bezierCurveTo(292, 365, 270, 370,265,390);
+				ctx.lineTo(225,388);
+				ctx.bezierCurveTo(215, 367, 223, 370,222,360);
+				ctx.lineTo(198,336);
+				ctx.bezierCurveTo(138, 320, 160, 275,70,260);
+				ctx.lineTo(45,235);
+				ctx.lineTo(33,243);
+				ctx.lineTo(22,200);
+				ctx.lineTo(67,210);
+				ctx.lineTo(60,220);
+				ctx.bezierCurveTo(150, 255, 100, 205,180,220);
+				ctx.lineTo(205,220);
+				ctx.bezierCurveTo(215, 190, 230, 195,254,165);
+				ctx.bezierCurveTo(280, 123, 280, 123,275,60);
+				ctx.bezierCurveTo(265, 45, 266, 40,277,33);
+				ctx.bezierCurveTo(285, 50, 297, 47,305,33);
+				ctx.bezierCurveTo(345, 40, 345, 20,393,27);
+				ctx.bezierCurveTo(445, 60, 409, 95,413,95);
+				ctx.bezierCurveTo(360, 75, 420, 115,295,68);
+				ctx.closePath();
+				
+				ctx.stroke();
+				ctx.fill();
+				addGreenGradient();
+				
+				// stroke near feet
+				ctx.beginPath();
+				ctx.moveTo(288,374);
+				ctx.lineTo(285,365);
+				ctx.bezierCurveTo(310,358,300,350,300,343);
+				ctx.stroke();
+				
+				ctx.restore();
+			}
+		
+			function drawAbdomen(){
+				ctx.save();
+				ctx.strokeStyle="#c5b638";
+				
+				ctx.beginPath();
+				ctx.moveTo(295, 68);
+				ctx.bezierCurveTo(330,250,280,250,235,305);
+				ctx.bezierCurveTo(285,355,293,345,350,330);
+				ctx.bezierCurveTo(430,260,390,200,350,130);
+				ctx.bezierCurveTo(335,103,325,103,320,75);
+				ctx.closePath();
+									
+				ctx.stroke();
+				ctx.fill();
+				addYellowGradient()
+				
+				ctx.restore();
+			}
+		
+			function drawWing(){
+				ctx.save();
+				
+				ctx.strokeStyle="#147738";
+				ctx.lineWidth = 3;
+				ctx.beginPath();
+				ctx.moveTo(254,165);
+				ctx.bezierCurveTo(245, 170, 235, 165,227,173);
+				ctx.bezierCurveTo(218, 163, 205, 158,197,168);
+				ctx.bezierCurveTo(184, 150, 184, 145,170,145);
+				ctx.bezierCurveTo(230, 125, 215, 135,260,155);
+				ctx.lineTo(260,155);
+				ctx.closePath();
+				
+				ctx.stroke();
+				ctx.fill();
+				addGreenGradient();
+				
+				// wing strokes
+				ctx.beginPath();
+				ctx.moveTo(197,169);
+				ctx.bezierCurveTo(200, 156, 190, 145,217,135);
+				ctx.bezierCurveTo(215, 160, 220, 160,228,173);
+				ctx.strokeStyle="#26811A";
+				ctx.stroke();
+				
+				ctx.restore();
+				}
+			
+			function drawFeet(){
+				ctx.save();
+				ctx.strokeStyle="#966530";
+				
+				ctx.beginPath();
+				ctx.moveTo(265,390);
+				ctx.bezierCurveTo(280, 368, 300, 368,320,390);
+				ctx.bezierCurveTo(335, 368, 355, 368,375,390);
+				ctx.closePath();
+				
+				ctx.stroke();
+				ctx.fill();
+				addBrownGradient();
+				ctx.restore();
+			}
+			
+			function drawEars(){
+				ctx.save();
+				ctx.strokeStyle="#37922e";
+				
+				ctx.beginPath();
+				ctx.moveTo(268,50);
+				ctx.bezierCurveTo(247, 60, 247, 55,225,45);
+				ctx.bezierCurveTo(247, 45, 247, 40,268,50);
+				ctx.closePath();
+				ctx.stroke();
+				ctx.fill();
+				addGreenGradient();
+				
+				ctx.beginPath();
+				ctx.moveTo(274,35);
+				ctx.bezierCurveTo(265, 30, 265, 30,250,10);
+				ctx.bezierCurveTo(265, 15, 280, 25,274,35);
+				ctx.closePath();
+				
+				ctx.stroke();
+				ctx.fill();
+				addGreenGradient();
+				ctx.restore();
+			}
+			function drawNostrils(){
+				ctx.save();
+				
+				ctx.lineWidth = 2;
+				ctx.strokeStyle="#147738";
+				// right one
+				ctx.beginPath();
+				ctx.arc(365,45, 8,Math.PI/2, 1.95*Math.PI);
+				ctx.moveTo(365,45);
+				ctx.lineTo(370, 49);
+				ctx.closePath();
+				ctx.stroke();
+				
+				// left one
+				ctx.beginPath();
+				ctx.arc(400,30, 8, Math.PI, 0.6*Math.PI);
+				ctx.fill();
+				ctx.moveTo(401,28);
+				ctx.lineTo(398, 32);
+				ctx.stroke();
+				
+				// nose stroke
+				ctx.beginPath();
+				ctx.moveTo(410,70);
+				ctx.bezierCurveTo(411, 70,410, 43,375,34);
+				ctx.stroke();
+				
+				ctx.restore();
+			}
+			function drawEyes(){
+				ctx.save();
+				
+				// green skin behind eyes
+				ctx.beginPath();
+				ctx.arc(290,32, 15,0, 2*Math.PI);
+				ctx.closePath();
+				ctx.fill();
+				addGreenGradient();
+				
+				ctx.beginPath();
+				ctx.arc(310,25, 15,0, 2*Math.PI);
+				ctx.closePath();
+				ctx.fill();
+				addGreenGradient();
+				
+				// "white" background for eyes
+				ctx.fillStyle="#FFF";
+				ctx.strokeStyle="#37922e";
+				ctx.beginPath();
+				ctx.arc(290,32, 8,0, 2*Math.PI);
+				ctx.closePath();
+				ctx.stroke();
+				ctx.fill();
+				
+				ctx.beginPath();
+				ctx.arc(310,25, 8,0, 2*Math.PI);
+				ctx.closePath();
+				ctx.stroke();
+				ctx.fill();
+				
+				ctx.restore();
+			}
+			
+			function drawHands(){
+				ctx.save();
+
+				ctx.strokeStyle="#0f6f0c";
+
+				// right hand
+				ctx.beginPath();
+				ctx.moveTo(276,234);
+				ctx.bezierCurveTo(235, 200,290, 195,298, 217);
+				ctx.lineTo(305,210);
+				ctx.lineTo(309,195);
+				ctx.lineTo(314,200);
+				ctx.lineTo(340,195);
+				ctx.lineTo(336,201);
+				ctx.lineTo(347,203);
+				ctx.lineTo(337,209);
+				ctx.lineTo(343,219);
+				ctx.lineTo(331,216);
+				ctx.lineTo(327,227);
+				ctx.lineTo(321,223);
+				ctx.bezierCurveTo(314, 238,315, 240,296, 245);
+				ctx.closePath();
+				
+				ctx.stroke();
+				ctx.fill();
+				addGreenGradient();
+
+				// left hand
+				ctx.beginPath();
+				ctx.moveTo(401,223);
+				ctx.bezierCurveTo(408, 209,406, 209,396,195);
+				ctx.bezierCurveTo(395, 190,395, 190,383,184);
+				ctx.lineTo(371,174);
+				ctx.lineTo(374,183);
+				ctx.bezierCurveTo(370, 185,366, 182,365,198);
+				ctx.lineTo(370,195);
+				ctx.lineTo(370,206);
+				ctx.lineTo(380,199);
+				ctx.lineTo(383, 209);
+				ctx.bezierCurveTo(384, 215,380, 226,401,223);
+
+				ctx.stroke();
+				ctx.fill();
+				addGreenGradient();
+
+				ctx.beginPath();
+				ctx.moveTo(383,209);
+				ctx.lineTo(389, 200);
+				ctx.lineWidth = 2;
+				ctx.stroke();
+
+				ctx.restore();
+			}
+			
+			function drawRemoteControl(){
+				ctx.save();
+				ctx.strokeStyle = "black";
+				ctx.fillStyle = "#c8c2b1";
+				// remote control
+				ctx.beginPath();
+				ctx.moveTo(319,200);
+				ctx.lineTo(320,160);
+				ctx.lineTo(345,162);
+				ctx.lineTo(342,200);
+				ctx.closePath();
+				ctx.stroke();
+				ctx.fill();
+				
+				// red button
+				ctx.fillStyle = "red";
+				ctx.beginPath();
+				ctx.arc(326,165, 2, 0, 2*Math.PI);
+				ctx.stroke();
+				ctx.fill();
+				
+				ctx.restore();
+			}
+				
+			// code to determine click coordinates
+			// +1 below is used here to refine precision due to borders
+			/*
+			var el = document.getElementById('myCanvas');
+				el.addEventListener('click', getClickXY, false);
+			function getClickXY(event){
+				var clickX = (event.layerX == undefined ? event.offsetX : event.layerX) + 1;
+				var clickY = (event.layerY == undefined ? event.offsetY : event.layerY) + 1;
+				alert('Click coordinates are: '+ clickX +' x '+ clickY);
+			}
+			*/
+			
+			function addShadows() {
+				ctx.shadowColor = "rgba(129,136,131, 0.25)";    // color
+				ctx.shadowBlur = 15;         // blur level
+				ctx.shadowOffsetX = -20;      // horizontal offset
+				ctx.shadowOffsetY = -5;      // vertical offset
+			}
+			function addGreenGradient(){
+				ctx.save();
+				greenGradient = ctx.createLinearGradient(0,0,460,0);
+				greenGradient.addColorStop(0, "#075323");
+				greenGradient.addColorStop(1, "rgba(6,204,78,0.2)");
+				ctx.fillStyle = greenGradient;
+				ctx.fill();
+				ctx.restore();
+			};
+			
+			function addYellowGradient(){
+			yellowGradient = ctx.createLinearGradient(320,332,601,115);
+					yellowGradient.addColorStop(0, "rgba(203,163,42,0.9)");
+					yellowGradient.addColorStop(1, "rgba(233,201,104,0.95)");
+					ctx.fillStyle = yellowGradient;
+					ctx.fill();
+			};
+			
+			function addBrownGradient(){
+			brownGradient = ctx.createLinearGradient(268,391,455,357);
+					brownGradient.addColorStop(0, "rgba(142,78,44,0.8)");
+					brownGradient.addColorStop(1, "rgba(199,95,39,0.4)");
+					ctx.fillStyle = brownGradient;
+					ctx.fill();
+			};
+			
+			function PlayVideo(){
+				var myVideo = document.querySelector('video');
+				myVideo.play();
+			}
+			
+			function PauseVideo(){
+				var myVideo = document.querySelector('video');
+				myVideo.pause();
+			}
+			
+			// the way I put downscaled video as image on eye retina but behind lens
+			// downscaled because I want entire image of TVscreen be projected on retina, not just chaotic movements
+			// the problem is that videoscreenshot redraw itself on top of canvas (and therefore eyes) but should be deep in eyes
+			function processFrame() {
+				// Use other same size canvas for creating background image
+				canvas = document.getElementById('myCanvas2');
+				ctx = canvas.getContext('2d');
+				
+				// Downscale TVscreen by ctx.drawImage(video ....) and draw them exactly behind eyes
+				ctx.drawImage(video, 284, 28, 12, 8);
+				ctx.drawImage(video, 304, 22, 12, 8);
+				
+				// creating appropriate variable (canvas type here) for ctx.createPattern()
+				var myCanvas2 = document.getElementById('myCanvas2');
+				
+				// turning back to our first canvas
+				canvas = document.getElementById('myCanvas');
+				ctx = canvas.getContext('2d');
+				
+				// creating pattern from video
+				patternReflectiveEyes = ctx.createPattern(myCanvas2,'no-repeat');
+				ctx.fillStyle = patternReflectiveEyes;
+				
+				
+				// it was useful not to save/restore context as shadows quite aptly spread across entire dragon
+				// but now - remove unnecessary shadows
+				ctx.shadowColor = "rgba(225,225,225,0)";
+				
+				drawReflectiveEyes();
+			}
+			
+			function drawReflectiveEyes(){
+				// filling eyes by "video-based pattern"
+				ctx.save();
+				ctx.strokeStyle="#37922e";
+				ctx.beginPath();
+				ctx.arc(290,32, 8,0, 2*Math.PI);
+				ctx.closePath();
+				ctx.stroke();
+				ctx.fill();
+				
+				ctx.beginPath();
+				ctx.arc(310,25, 8,0, 2*Math.PI);
+				ctx.closePath();
+				ctx.stroke();
+				ctx.fill();
+				
+				// eyes pupils
+				
+				ctx.fillStyle="#000";
+				ctx.beginPath();
+				ctx.arc(292,33, 1,0, 2*Math.PI);
+				ctx.closePath();
+				ctx.fill();
+				
+				ctx.fillStyle="#000";
+				ctx.beginPath();
+				ctx.arc(312,26, 1,0, 2*Math.PI);
+				ctx.closePath();
+				ctx.fill();
+				
+				// adding some semitransparent blue to eyes
+				ctx.fillStyle="rgba(85,188,192,0.5)";
+				ctx.beginPath();
+				ctx.arc(290,32, 8,0.75*Math.PI, 1.8*Math.PI);
+				ctx.closePath();
+				ctx.fill();
+				
+				ctx.beginPath();
+				ctx.arc(310,25, 8,0.75*Math.PI, 1.8*Math.PI);
+				ctx.closePath();
+				ctx.fill();
+				ctx.restore();
+			}
+		</script>
+	</body>
+</html>

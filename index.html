@@ -51,9 +51,11 @@
                <li class="dropdown">
                   <a href="#" class="dropdown-toggle glyphicon glyphicon-film" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Multimedia<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                     <li><a href="#">Pagina1</a></li>
+                     <li><a href="multhtml.html">HTML5</a></li>
                      <li role="separator" class="divider"></li>
-                     <li><a href="#">Pagina2</a></li>
+                     <li><a href="mulcss3.html">CSS3</a></li>
+                     <li role="separator" class="divider"></li>
+                     <li><a href="mulgit.html">GIT/GITHUB</a></li>
                   </ul>
                </li>
                <li class="dropdown">
@@ -68,18 +70,71 @@
                </li>
                <li><a href="#" data-toggle="modal" data-target="#modalautor"><span class="glyphicon glyphicon-user"></span> Autores</a></li>
             </ul>
-            <div class="modal fade" id="modalautor" tabindex="-1" role="dialog" aria-labelledby="madalautor" aria-hidden="true">
+           <div class="modal fade" id="modalautor" tabindex="-1" role="dialog" aria-labelledby="madalautor" aria-hidden="true">
                <div class="modal-dialog">
                   <div class="modal-content">
-                     <div class="modal-header">
+                     <div class="modal-header centerTable">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
+                        <table class= border="0">
+                            <tr id="tabla_header">
+                                <td style="text-align:center;"><img src="img/html5_logo.png" width="100px" height="100px"/></td>
+                                <td style="text-align:center;"><img src="img/logo.png" width="100px" height="100px"/></td>
+                                <td style="text-align:center;"><img src="img/css3logo.png" width="100px" height="100px"/></td>
+                            </tr>
+                        </table>
                      </div>
-                     <div class="modal-body">
-                        <h3>Modal Body</h3>
+                     <div class="modal-body" style="background-image: url('img/fondo2.jpg'); background-size: cover;">
+                           <p style="text-align:center; font-size:200%;">GRUPO 32</p>
+                        <div class="container">
+                           <div class="row">
+                              <div class="col-xs-4 col-sm-2">
+                                 <img class="img-responsive fotos" src="img/Alejandro.jpg">
+                              </div>
+                              <div class="col-xs-6 col-sm-5 text-autor">
+                                 <p>Luis Alejandro Gomez Cuellar<br>Codigo: 1110449696 <br>Ingenieria de Sistemas</p>
+                              </div>
+                           </div>
+                           __________________________________________________________________
+                           <br><br>
+                               <div class="row">
+                              <div class="col-xs-4 col-sm-2">
+                                 <img class="img-responsive fotos" src="img/Carlos.jpg">
+                              </div>
+                              <div class="col-xs-6 col-sm-5 text-autor">
+                                 <p>Carlos Steven Cantor<br>Codigo: 1107099781 <br>Ingenieria de Sistemas</p>
+                              </div>
+                           </div>
+                           __________________________________________________________________
+                           <br><br>
+                            <div class="row">
+                              <div class="col-xs-4 col-sm-2">
+                                 <img class="img-responsive fotos" src="img/Diana.png">
+                              </div>
+                              <div class="col-xs-6 col-sm-5 text-autor">
+                                 <p>Diana Patricia Zuñiga<br>Codigo: 1015407472 <br>Ingenieria de Sistemas</p>
+                              </div>
+                           </div>
+                           __________________________________________________________________
+                           <br><br>
+                            <div class="row">
+                              <div class="col-xs-4 col-sm-2">
+                                 <img class="img-responsive fotos" src="img/Kimberly.png">
+                              </div>
+                              <div class="col-xs-6 col-sm-5 text-autor">
+                                 <p>Kimberly Cataño Arango<br>Codigo: 1112485454 <br>Ingenieria de Sistemas</p>
+                              </div>
+                           </div>
+
+                           </div>
                      </div>
                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <table class= border="0">
+                            <tr>
+                                <td style="text-align:center; width: 250px;"><img src="img/gitbaner.png" width="100px" height="100px"/></td>
+                                <td style="text-align:right; width: 250px;"><img src="img/githublogo.png" width="100px" height="100px"/></td>
+                                <td style="text-align:right; widht:100px; padding:10px;"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></td>
+                                 </table>
+                        
                      </div>
                   </div>
                </div>
@@ -105,20 +160,28 @@
          </div>
 
          <div class="row">
-            <div class="col-sm-6" style="background-color:F00;">
+            <div class="bienvenida col-sm-6">
                <p align="center" style="text-shadow: 2px 2px 5px red";><b>CONTENIDO DEL SITIO</b></p>
                <br>
-               <!--<p align="center"><img class="img-responsive banner-diseno" src="img/banner diseño800x600.jpg"></p>-->
-               <br>
-               <p align="center">En este sitio encontrara la siguiente información:<br></p>
+               <p class="parrafo">Esta pagina se desarrolla en el marco de las actividades del curso <b>Diseño de sitios web</b>, buscando alcanzar los siguientes objetivos:<br></p>
                <ul>
-                  <li>Git y Github. Que es y como funciona?</li>
+                  <li>Conocer la estructura del "lenguaje" HTML</li>
+                  <li>Entender como se construye una pagina web utilizando las etiquetas HTML</li>
+                  <li>Aplicar estilos CSS a una pagina HTML</li>
+                  <li>Utilizar Git y GitHub en el desarollo de una pagina web para trabajo colaborativo</li>
                </ul>
             </div>
+<<<<<<< HEAD
             <div class="col-sm-6">
 	               <div class="widget-twitter">
 	               <p align="center"><a class="twitter-timeline" align="center" data-lang="es" data-width="100%" data-height="300" href="https://twitter.com/UniversidadUNAD?ref_src=twsrc%5Etfw">Tweets by UniversidadUNAD</a></p> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	            </div>
+=======
+            <div class="col-sm-6"  style="margin-top:20px; heigth:410px;">
+               <div class="widget-twitter">
+               <p align="center"><a class="twitter-timeline" align="center" data-lang="es" data-width="100%" data-height="405px" href="https://twitter.com/UniversidadUNAD?ref_src=twsrc%5Etfw">Tweets by UniversidadUNAD</a></p> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+>>>>>>> 1741a216585b999080284b83aa125680018ce861
             </div>
          </div>
       </div>
